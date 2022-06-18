@@ -1,2 +1,2 @@
 # SQL-Bootcamp
-Trabajo a entregar al final del Bootcamp
+Trabajo/Pracrica en SQL a entregar al final del Bootcamp.
