@@ -14,7 +14,7 @@ La relación es la siguiente:
 -- Crear un esquema de Base de Datos relacional que contenga información de alumnos, profesores, exámenes y asignaturas.
 CREATE DATABASE BBDD_IDBootcamps;
 
-
+use BBDD_IDBootcamps;
 -- creamos la tabla de alumnos
 
 CREATE TABLE alumnos
@@ -72,7 +72,15 @@ CREATE TABLE examenes
     id_alumno_asignatura INT NOT NULL,
     nombre_examen INT NOT NULL,
     PRIMARY KEY (id_examen),
-    FOREIGN KEY (id_alumno_asignatura) REFERENCES alumnos(id_alumno_asignatura),
+    FOREIGN KEY (id_alumno_asignatura) REFERENCES alumnos(id_alumno_asignatura)
+);
+
+-- creamos la tabla de ciudades
+CREATE TABLE ciudades
+(
+    id_ciudad INT NOT NULL AUTO_INCREMENT,
+    nombre_ciudad VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id_ciudad)
 );
 
 -- creamos la tabla de direcciones
@@ -82,14 +90,7 @@ CREATE TABLE direcciones
     calle VARCHAR(50) NOT NULL,
     numero INT NOT NULL,
     id_ciudad INT NOT NULL,
-    PRIMARY KEY (id_direccion)
-    FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad),
+    PRIMARY KEY (id_direccion),
+    FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad)
 );
 
--- creamos la tabla de ciudades
-CREATE TABLE ciudades
-(
-    id_ciudad INT NOT NULL AUTO_INCREMENT,
-    nombre_ciudad VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id_ciudad),
-);
