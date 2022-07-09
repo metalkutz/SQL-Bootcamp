@@ -7,3 +7,9 @@ Al terminar tienes que ser capaz de realizar las siguientes consultas.
 		¿Cuál es la asignatura más dificil?
 		Busca el grupo de riesgo de cada asignatura (alumnos que peor van) y verifica si hay alguno que esté en todas.
 */
+
+###### INDICO QUE VOY A TRABAJAR SOBRE LA NUEVA BBDD 
+use BBDD_IDBootcamps;
+
+
+select * from ciudades;

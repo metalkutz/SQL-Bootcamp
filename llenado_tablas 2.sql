@@ -47,7 +47,7 @@ VALUES
 ;
 
 ###### ASIGNATURAS   ######
-INSERT INTO asignaturas 
+INSERT INTO bootcamp 
 (nombre_asignatura,id_bootcamp)
 VALUES
 ('Pre-Curso',1),
@@ -62,37 +62,7 @@ VALUES
 ('Sistemas de Recomendacion',1)
 ;
 ###### PAISES   ######
-INSERT INTO paises 
-(nombre_pais)
-VALUES
-('España'),
-('Chile'),
-('Venezuela'),
-('Brasil'),
-('Argentina')
-;
+
 ###### CIUDADES   ######
-INSERT INTO ciudades 
-(nombre_ciudad,id_pais)
-VALUES
-('Madrid',1),
-('Barcelona',1),
-('Valencia',1),
-('Malaga',1),
-('Santiago',2),
-('Rio de Janeiro',4),
-('Caracas',3),
-('Buenos Aires',5),
-('Sao Paulo',4)
-;
 
 ###### DIRECCIONES   ######
-
-
-
--- SEGUNDO LLENAMOS LAS TABLAS RELACIONALES CON 2 FK
-###### ALUMNOS ASIGNATURAS   ######
-###### PROFESORES ASIGNATURAS   ######
-
--- TERCERO LLENAMOS LAS TABLAS QUE DEPENDE DE UNA TABLA RELACIONAL CON 2 FK
-###### EXAMENES  ######
