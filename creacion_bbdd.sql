@@ -1,3 +1,4 @@
+-- Creación BBDD
 /* 
 Crear un esquema de Base de Datos relacional que contenga información de alumnos, profesores, exámenes y asignaturas.
 La relación es la siguiente: 
@@ -13,10 +14,10 @@ La relación es la siguiente:
 
 -- Crear un esquema de Base de Datos relacional que contenga información de alumnos, profesores, exámenes y asignaturas.
 CREATE DATABASE BBDD_IDBootcamps;
-###### INDICO QUE VOY A TRABAJAR SOBRE LA NUEVA BBDD 
+-- INDICO QUE VOY A TRABAJAR SOBRE LA NUEVA BBDD 
 use BBDD_IDBootcamps;
 
-#################### ALUMNOS ######################
+-- ############ALUMNOS##############
 -- creamos la tabla de alumnos
 CREATE TABLE alumnos
 (
@@ -27,16 +28,17 @@ CREATE TABLE alumnos
     PRIMARY KEY (id_alumno),
     FOREIGN KEY (id_direccion) REFERENCES direcciones(id_direccion)
 );
-
 -- modificamos la tabla alumnos y agregamos columnas
-ALTER TABLE alumnos add email VARCHAR(50) default null; # añado email como una columna nueva
-ALTER TABLE alumnos add fecha_ingreso DATE default null; # añado fecha ingreso como una columna nueva
-ALTER TABLE alumnos add estado TINYINT default null; # añado estado si está activo como una columna nueva
-ALTER TABLE alumnos add fecha_nacimiento DATE default null; # añado fecha nacimiento como una columna nueva
-
+ALTER TABLE alumnos add email VARCHAR(50) default null; -- añado email como una columna nueva
+ALTER TABLE alumnos add fecha_ingreso DATE default null; -- añado fecha ingreso como una columna nueva
+ALTER TABLE alumnos add estado TINYINT default null; -- añado estado si está activo como una columna nueva
+ALTER TABLE alumnos add fecha_nacimiento DATE default null; -- añado fecha nacimiento como una columna nueva
+ALTER TABLE alumnos DROP FOREIGN KEY alumnos_ibfk_1;
+ALTER TABLE alumnos modify id_direccion SMALLINT UNSIGNED;
+ALTER TABLE alumnos ADD FOREIGN KEY (id_direccion) REFERENCES direcciones(id_direccion);
 -- DROP TABLE alumnos; -- por si queremos eliminar la tabla de alumnos
 
-#################### PROFESORES ######################
+-- #############PROFESORES##############
 -- creamos la tabla de profesores
 CREATE TABLE profesores
 (
@@ -47,15 +49,17 @@ CREATE TABLE profesores
     PRIMARY KEY (id_profesor),
     FOREIGN KEY (id_direccion) REFERENCES direcciones(id_direccion)
 );
-
 -- modificamos la tabla alumnos y agregamos columnas
-ALTER TABLE profesores add email VARCHAR(50) default null; # añado email como una columna nueva
-ALTER TABLE profesores add fecha_ingreso DATE default null; # añado fecha ingreso como una columna nueva
-ALTER TABLE profesores add estado TINYINT default null; # añado estado si está activo como una columna nueva
-ALTER TABLE alumnos add fecha_nacimiento DATE default null; # añado fecha nacimiento como una columna nueva
+ALTER TABLE profesores add email VARCHAR(50) default null; -- añado email como una columna nueva
+ALTER TABLE profesores add fecha_ingreso DATE default null; -- añado fecha ingreso como una columna nueva
+ALTER TABLE profesores add estado TINYINT default null; -- añado estado si está activo como una columna nueva
+ALTER TABLE profesores add fecha_nacimiento DATE default null; -- añado fecha nacimiento como una columna nueva
+ALTER TABLE profesores DROP FOREIGN KEY profesores_ibfk_1;
+ALTER TABLE profesores modify id_direccion SMALLINT UNSIGNED;
+ALTER TABLE profesores ADD FOREIGN KEY (id_direccion) REFERENCES direcciones(id_direccion);
 -- DROP TABLE profesores; -- por si necesitamos borrar la tabla
 
-#################### PROGRAMAS bootcamps ######################
+-- ############### PROGRAMAS bootcamps ###############
 -- creamos la tabla de asignaturas
 CREATE TABLE bootcamp
 (
@@ -63,9 +67,10 @@ CREATE TABLE bootcamp
     nombre_bootcamp VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_bootcamp)
 );
-ALTER TABLE bootcamp add fecha_edicion DATE default null; # añado fecha edicion como una columna nueva
-ALTER TABLE bootcamp add estado TINYINT default null; # añado estado si está activo como una columna nueva
-#################### ASIGNATURAS ######################
+ALTER TABLE bootcamp add fecha_edicion DATE default null; -- añado fecha edicion como una columna nueva
+ALTER TABLE bootcamp add estado TINYINT default null; -- añado estado si está activo como una columna nueva
+
+-- #################### ASIGNATURAS ######################
 -- creamos la tabla de asignaturas
 CREATE TABLE asignaturas
 (
@@ -77,7 +82,7 @@ CREATE TABLE asignaturas
 ALTER TABLE asignaturas ADD id_bootcamp INT NOT NULL; -- agrego nueva columna con id del bootcamp
 ALTER TABLE asignaturas ADD FOREIGN KEY (id_bootcamp) REFERENCES bootcamp(id_bootcamp);
 
-#################### RELACION ASIGNATURAS CON PROFESORES ######################
+-- #################### RELACION ASIGNATURAS CON PROFESORES ######################
 -- CREAMOS LA TABLA DE ASIGNATURAS_PROFESORES que relaciona las tablas profesores y asignaturas
 CREATE TABLE asignaturas_profesores
 (
@@ -88,9 +93,10 @@ CREATE TABLE asignaturas_profesores
     FOREIGN KEY (id_profesor) REFERENCES profesores(id_profesor),
     FOREIGN KEY (id_asignatura) REFERENCES asignaturas(id_asignatura)
 );
+-- modificaciones a la tabla
 -- DROP TABLE asignaturas_profesores; -- por si tenemos que eliminar la tabla
 
-#################### RELACION ASIGNATURAS CON ALUMNOS ######################
+-- #################### RELACION ASIGNATURAS CON ALUMNOS ######################
 -- creamos la tabla de alumnos_asignaturas que relaciona las tablas alumnos y asignaturas
 CREATE TABLE alumnos_asignaturas
 (
@@ -103,7 +109,7 @@ CREATE TABLE alumnos_asignaturas
 );
 -- DROP TABLE alumnos_asignaturas; -- por si tenemos que eliminar la tabla
 
-#################### EXAMENES ######################
+-- #################### EXAMENES ######################
 -- CREAMOS LA TABLA DE EXAMENES que tiene una clave primaria y una clave foranea de asignatura y alumno
 CREATE TABLE examenes
 (
@@ -114,21 +120,23 @@ CREATE TABLE examenes
     FOREIGN KEY (id_alumno_asignatura) REFERENCES alumnos_asignaturas(id_alumno_asignatura)
 );
 -- MODIFICAMOS LA TABLA
-ALTER TABLE examenes add nota FLOAT NOT NULL; # añado nota del examen como una columna nueva
-ALTER TABLE examenes add fecha DATE NOT NULL; # añado fecha del examen como una columna nueva
+ALTER TABLE examenes add nota FLOAT NOT NULL; -- añado nota del examen como una columna nueva
+ALTER TABLE examenes add fecha DATE NOT NULL; -- añado fecha del examen como una columna nueva
 -- DROP TABLE examenes; -- por si tenemos que eliminar la tabla
 
 
-#################### PAIS ######################
--- creamos la tabla de ciudades
+-- #################### PAIS ######################
+-- creamos la tabla de paises
 CREATE TABLE paises
 (
     id_pais INT NOT NULL AUTO_INCREMENT,
     nombre_pais VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_pais)
 );
+-- modificamos la tabla
+ALTER TABLE paises modify id_pais SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT; -- modifico tipo dato a varchar para cargar tabla de shakila
 
-#################### CIUDADES ######################
+-- #################### CIUDADES ######################
 -- creamos la tabla de ciudades
 CREATE TABLE ciudades
 (
@@ -139,8 +147,11 @@ CREATE TABLE ciudades
 -- modificamos la tabla 
 ALTER TABLE ciudades ADD id_pais INT NOT NULL; -- agrego nueva columna con id del pais
 ALTER TABLE ciudades ADD FOREIGN KEY (id_pais) REFERENCES paises(id_pais);
+ALTER TABLE ciudades DROP FOREIGN KEY ciudades_ibfk_1;
+ALTER TABLE ciudades modify id_pais SMALLINT UNSIGNED;
+ALTER TABLE ciudades modify id_ciudad SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT;
 
-#################### DIRECCIONES ######################
+-- #################### DIRECCIONES ######################
 -- creamos la tabla de direcciones
 CREATE TABLE direcciones
 (
@@ -153,5 +164,13 @@ CREATE TABLE direcciones
 );
 
 -- MODIFICAMOS LA TABLA
-ALTER TABLE direcciones add cod_postal INT default null; # añado CODIGO POSTAL A LA DIRECCION como una columna nueva
-
+ALTER TABLE direcciones add cod_postal INT default null; -- añado CODIGO POSTAL A LA DIRECCION como una columna nueva
+ALTER TABLE direcciones modify cod_postal VARCHAR(10); -- modifico tipo dato a varchar para cargar tabla de shakila
+ALTER TABLE direcciones add barrio VARCHAR(50) default null; -- añado barrio como una columna nueva
+ALTER TABLE direcciones ADD telefono INT default null; -- agrego nueva columna con telefono
+ALTER TABLE direcciones modify telefono VARCHAR(20); -- modifico tipo dato a varchar para cargar tabla de shakila
+ALTER TABLE direcciones drop COLUMN numero; -- elimino campo
+ALTER TABLE direcciones DROP FOREIGN KEY direcciones_ibfk_1;
+ALTER TABLE direcciones modify id_ciudad SMALLINT UNSIGNED;
+ALTER TABLE direcciones modify id_direccion SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE direcciones ADD FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad);
