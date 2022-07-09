@@ -30,4 +30,4 @@ La relación es la siguiente:
     - Busca el grupo de riesgo de cada asignatura (alumnos que peor van) y verifica si hay alguno que esté en todas.
 
 ## Diagrama EER de la bbdd
-![image](modelo\EER_diagram_idbootcamps.png)
+![image](.\modelo\EER_diagram_idbootcamps.png)
