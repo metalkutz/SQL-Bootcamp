@@ -63,46 +63,26 @@ VALUES
 ('Deep Learning',1),
 ('Sistemas de Recomendacion',1)
 ;
+INSERT INTO asignaturas 
+SET 
+nombre_asignatura='Kahoot',
+id_bootcamp=1;
+
 
 -- ###### PAISES   ######
 INSERT INTO bbdd_idbootcamps.paises 
 (nombre_pais)
 SELECT country
 FROM sakila.country;
-
-INSERT INTO paises 
-(nombre_pais)
-VALUES
-('España'),
-('Chile'),
-('Venezuela'),
-('Brasil'),
-('Argentina')
-;
-Delete from bbdd_idbootcamps.paises;
+-- Delete from bbdd_idbootcamps.paises;
 
 -- ###### CIUDADES   ######
 INSERT INTO bbdd_idbootcamps.ciudades 
 (nombre_ciudad,id_pais) 
 SELECT city,country_id
 FROM sakila.city;
-
-INSERT INTO ciudades 
-(nombre_ciudad,id_pais)
-VALUES
-('Madrid',1),
-('Barcelona',1),
-('Valencia',1),
-('Malaga',1),
-('Santiago',2),
-('Rio de Janeiro',4),
-('Caracas',3),
-('Buenos Aires',5),
-('Sao Paulo',4)
-;
-
 -- si queremos borrar la data de la TABLE
-Delete from bbdd_idbootcamps.ciudades;
+-- Delete from bbdd_idbootcamps.ciudades;
 
 -- ###### DIRECCIONES   ######
 INSERT INTO bbdd_idbootcamps.direcciones 
@@ -113,15 +93,35 @@ FROM sakila.address;
 
 -- SEGUNDO LLENAMOS LAS TABLAS RELACIONALES CON 2 FK
 -- ###### ALUMNOS ASIGNATURAS   ######
-
-
+INSERT INTO alumnos_asignaturas 
+(id_alumno,id_asignatura)
+VALUES
+(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),
+(2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,9),(2,10),
+(3,1),(3,2),(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(3,9),(3,10),
+(4,1),(4,2),(4,3),(4,4),(4,5),(4,6),(4,7),(4,8),(4,9),(4,10),
+(5,1),(5,2),(5,3),(5,4),(5,5),(5,6),(5,7),(5,8),(5,9),(5,10),
+(6,1),(6,2),(6,3),(6,4),(6,5),(6,6),(6,7),(6,8),(6,9),(6,10)
+;
 
 -- ###### PROFESORES ASIGNATURAS   ######
-
-
-
-
-
+INSERT INTO asignaturas_profesores 
+(id_profesor,id_asignatura)
+VALUES
+(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),
+(2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,9),(2,10)
+;
 
 -- TERCERO LLENAMOS LAS TABLAS QUE DEPENDE DE UNA TABLA RELACIONAL CON 2 FK
 -- ###### EXAMENES  ######
+INSERT INTO examenes 
+(id_alumno_asignatura,nombre_examen,nota,fecha) 
+VALUES
+(1,'Ex-Precurso',ROUND(RAND()*(10-5+1)+5,1),'2022-05-01'),(2,'Ex-Python',ROUND(RAND()*(10-5+1)+5,1),'2022-06-01'),(3,'Ex-Mates',ROUND(RAND()*(10-5+1)+5,1),'2022-06-07'),(4,'Ex-WebAPI',ROUND(RAND()*(10-5+1)+5,1),'2022-06-14'),(5,'Ex-SQL',ROUND(RAND()*(10-5+1)+5,1),'2022-06-21'),(6,'Ex-ML',ROUND(RAND()*(10-5+1)+5,1),'2022-07-01'),(7,'Ex-NPL',ROUND(RAND()*(10-5+1)+5,1),'2022-07-02'),(8,'Ex-SeriesT',ROUND(RAND()*(10-5+1)+5,1),'2022-07-04'),(9,'Ex-RNN',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),(10,'Ex-SistR',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),
+(11,'Ex-Precurso',ROUND(RAND()*(10-5+1)+5,1),'2022-05-01'),(12,'Ex-Python',ROUND(RAND()*(10-5+1)+5,1),'2022-06-01'),(13,'Ex-Mates',ROUND(RAND()*(10-5+1)+5,1),'2022-06-07'),(14,'Ex-WebAPI',ROUND(RAND()*(10-5+1)+5,1),'2022-06-14'),(15,'Ex-SQL',ROUND(RAND()*(10-5+1)+5,1),'2022-06-21'),(16,'Ex-ML',ROUND(RAND()*(10-5+1)+5,1),'2022-07-01'),(17,'Ex-NPL',ROUND(RAND()*(10-5+1)+5,1),'2022-07-02'),(18,'Ex-SeriesT',ROUND(RAND()*(10-5+1)+5,1),'2022-07-04'),(19,'Ex-RNN',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),(20,'Ex-SistR',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),
+(21,'Ex-Precurso',ROUND(RAND()*(10-5+1)+5,1),'2022-05-01'),(22,'Ex-Python',ROUND(RAND()*(10-5+1)+5,1),'2022-06-01'),(23,'Ex-Mates',ROUND(RAND()*(10-5+1)+5,1),'2022-06-07'),(24,'Ex-WebAPI',ROUND(RAND()*(10-5+1)+5,1),'2022-06-14'),(25,'Ex-SQL',ROUND(RAND()*(10-5+1)+5,1),'2022-06-21'),(26,'Ex-ML',ROUND(RAND()*(10-5+1)+5,1),'2022-07-01'),(27,'Ex-NPL',ROUND(RAND()*(10-5+1)+5,1),'2022-07-02'),(28,'Ex-SeriesT',ROUND(RAND()*(10-5+1)+5,1),'2022-07-04'),(29,'Ex-RNN',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),(30,'Ex-SistR',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),
+(31,'Ex-Precurso',ROUND(RAND()*(10-5+1)+5,1),'2022-05-01'),(32,'Ex-Python',ROUND(RAND()*(10-5+1)+5,1),'2022-06-01'),(33,'Ex-Mates',ROUND(RAND()*(10-5+1)+5,1),'2022-06-07'),(34,'Ex-WebAPI',ROUND(RAND()*(10-5+1)+5,1),'2022-06-14'),(35,'Ex-SQL',ROUND(RAND()*(10-5+1)+5,1),'2022-06-21'),(36,'Ex-ML',ROUND(RAND()*(10-5+1)+5,1),'2022-07-01'),(37,'Ex-NPL',ROUND(RAND()*(10-5+1)+5,1),'2022-07-02'),(38,'Ex-SeriesT',ROUND(RAND()*(10-5+1)+5,1),'2022-07-04'),(39,'Ex-RNN',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),(40,'Ex-SistR',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),
+(41,'Ex-Precurso',ROUND(RAND()*(10-5+1)+5,1),'2022-05-01'),(42,'Ex-Python',ROUND(RAND()*(10-5+1)+5,1),'2022-06-01'),(43,'Ex-Mates',ROUND(RAND()*(10-5+1)+5,1),'2022-06-07'),(44,'Ex-WebAPI',ROUND(RAND()*(10-5+1)+5,1),'2022-06-14'),(45,'Ex-SQL',ROUND(RAND()*(10-5+1)+5,1),'2022-06-21'),(46,'Ex-ML',ROUND(RAND()*(10-5+1)+5,1),'2022-07-01'),(47,'Ex-NPL',ROUND(RAND()*(10-5+1)+5,1),'2022-07-02'),(48,'Ex-SeriesT',ROUND(RAND()*(10-5+1)+5,1),'2022-07-04'),(49,'Ex-RNN',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),(50,'Ex-SistR',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),
+(51,'Ex-Precurso',ROUND(RAND()*(10-5+1)+5,1),'2022-05-01'),(52,'Ex-Python',ROUND(RAND()*(10-5+1)+5,1),'2022-06-01'),(53,'Ex-Mates',ROUND(RAND()*(10-5+1)+5,1),'2022-06-07'),(54,'Ex-WebAPI',ROUND(RAND()*(10-5+1)+5,1),'2022-06-14'),(55,'Ex-SQL',ROUND(RAND()*(10-5+1)+5,1),'2022-06-21'),(56,'Ex-ML',ROUND(RAND()*(10-5+1)+5,1),'2022-07-01'),(57,'Ex-NPL',ROUND(RAND()*(10-5+1)+5,1),'2022-07-02'),(58,'Ex-SeriesT',ROUND(RAND()*(10-5+1)+5,1),'2022-07-04'),(59,'Ex-RNN',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06'),(60,'Ex-SistR',ROUND(RAND()*(10-5+1)+5,1),'2022-07-06')
+;
+-- Delete from examenes;

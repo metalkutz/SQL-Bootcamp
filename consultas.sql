@@ -10,5 +10,6 @@ Busca el grupo de riesgo de cada asignatura (alumnos que peor van) y verifica si
 -- INDICO QUE VOY A TRABAJAR SOBRE LA NUEVA BBDD 
 use BBDD_IDBootcamps;
 
-select * from direcciones;
+select * from examenes;
+
 

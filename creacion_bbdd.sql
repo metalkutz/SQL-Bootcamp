@@ -122,6 +122,7 @@ CREATE TABLE examenes
 -- MODIFICAMOS LA TABLA
 ALTER TABLE examenes add nota FLOAT NOT NULL; -- añado nota del examen como una columna nueva
 ALTER TABLE examenes add fecha DATE NOT NULL; -- añado fecha del examen como una columna nueva
+ALTER TABLE examenes modify nombre_examen VARCHAR(50); -- modifico tipo dato a varchar para cargar tabla de shakila
 -- DROP TABLE examenes; -- por si tenemos que eliminar la tabla
 
 
