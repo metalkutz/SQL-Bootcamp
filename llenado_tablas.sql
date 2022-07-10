@@ -16,7 +16,7 @@ VALUES
 ('Alvaro','Ferrer','aferrer@idbootcamps.com','2022-05-09',1),
 ('Belen','Gutierrez','bgutierrez@idbootcamps.com','2022-05-09',1),
 ('Enrique','Bartolome', 'ebartolome@idbootcamps.com','2022-05-09',1),
-('Juliana','???', 'juli@idbootcamps.com','2022-05-09',1),
+('Juliana','Silva', 'juli@idbootcamps.com','2022-05-09',1),
 ('Stefani', 'Pereira', 'spereira@idbootcamps.com','2022-05-09',1),
 ('Benjamin', 'Kutz', 'bkutz@idbootcamps.com','2022-05-09',1),
 ('Marina', 'Casilda', 'mcasilda@idbootcamps.com','2022-02-01',0),
