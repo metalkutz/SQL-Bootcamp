@@ -42,6 +42,17 @@ from alumnos al
 where al.estado = 1 -- solo alumnos activos
 ; 
 
+select -- *
+	al.nombre_alumno as alumno, 
+    round(avg(e.nota),1) as nota_media
+from alumnos al
+	left join alumnos_asignaturas aa on al.id_alumno = aa.id_alumno
+		left join examenes e on e.id_alumno_asignatura = aa.id_alumno_asignatura
+where al.estado = 1 -- solo alumnos activos
+group by al.id_alumno
+order by nota_media
+; 
+
 -- ¿Cuál es la asignatura más dificil?
 select 
 	asig.nombre_asignatura as asignatura,
