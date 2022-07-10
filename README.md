@@ -12,13 +12,13 @@ El objetivo de la entrega es poner en práctica los conocimientos adquiridos del
 ## Instrucciones
 ### 1. Crear un esquema de Base de Datos relacional que contenga información de alumnos, profesores, exámenes y asignaturas.
 La relación es la siguiente: 
-	- Un alumno puede tener una o varias asignaturas
-	- La relación del profesor y el alumno es a través de las asignaturas, no directa
-	- La relación entre los examenes y los alumnos depende de la asignatura, no es directa.
-	- Un profesor puede dar clase en varias asignaturas y una asignatura puede tener varios profesores.
-	- Igual para los alumnos y las asignaturas.
-	- Los exámenes son ÚNICOS por asignatura. SOLO HAY UN EXAMEN PARA CADA ASIGNATURA y ALUMNO Y SOLO UNO.
-	Extra: los datos sociodemográficos puede ser tablas separadas (fijate en sakila.city y sakila.addres)
+- Un alumno puede tener una o varias asignaturas
+- La relación del profesor y el alumno es a través de las asignaturas, no directa
+- La relación entre los examenes y los alumnos depende de la asignatura, no es directa.
+- Un profesor puede dar clase en varias asignaturas y una asignatura puede tener varios profesores.
+- Igual para los alumnos y las asignaturas.
+- Los exámenes son ÚNICOS por asignatura. SOLO HAY UN EXAMEN PARA CADA ASIGNATURA y ALUMNO Y SOLO UNO.
+Extra: los datos sociodemográficos puede ser tablas separadas (fijate en sakila.city y sakila.addres)
 
 ### 2. Una vez que has creado el schema, inventa valores y rellena las tablas con datos apropiados. Trata de tener columnas suficientes para almacenar toda la información que podría ser relevante.
 
