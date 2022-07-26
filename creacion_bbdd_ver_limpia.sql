@@ -75,10 +75,10 @@ CREATE TABLE asignaturas
 -- CREAMOS LA TABLA DE ASIGNATURAS_PROFESORES que relaciona las tablas profesores y asignaturas
 CREATE TABLE asignaturas_profesores
 (
-    id_asigntatura_profesor INT NOT NULL AUTO_INCREMENT,
+    id_asignatura_profesor INT NOT NULL AUTO_INCREMENT,
     id_profesor INT NOT NULL,
     id_asignatura INT NOT NULL,
-    PRIMARY KEY (id_asigntatura_profesor),
+    PRIMARY KEY (id_asignatura_profesor),
     FOREIGN KEY (id_profesor) REFERENCES profesores(id_profesor),
     FOREIGN KEY (id_asignatura) REFERENCES asignaturas(id_asignatura)
 );
