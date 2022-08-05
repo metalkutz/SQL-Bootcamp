@@ -75,10 +75,23 @@ from asignaturas asig
 	left join alumnos_asignaturas aa on asig.id_asignatura = aa.id_asignatura -- unimos asignaturas con su relación con alumnos
 		inner join alumnos al on al.id_alumno = aa.id_alumno -- unimos con los datos de alumnos
 			left join examenes e on e.id_alumno_asignatura = aa.id_alumno_asignatura -- unimos los examenes rendidos por alumnos en sus asignaturas
-where asig.id_bootcamp =1 -- and asig.id_asignatura=1  -- solo para 1 curso
+where asig.id_bootcamp =1 and asig.id_asignatura=1  -- solo para 1 curso
 group by asignatura, alumno
 order by asignatura, nota_media 
 -- limit 3
 ;
 
+select 
+	asig.nombre_asignatura as asignatura,
+    al.nombre_alumno as alumno,
+    round(avg(e.nota),1) as nota_media
+from asignaturas asig 
+	left join alumnos_asignaturas aa on asig.id_asignatura = aa.id_asignatura -- unimos asignaturas con su relación con alumnos
+		inner join alumnos al on al.id_alumno = aa.id_alumno -- unimos con los datos de alumnos
+			left join examenes e on e.id_alumno_asignatura = aa.id_alumno_asignatura -- unimos los examenes rendidos por alumnos en sus asignaturas
+where asig.id_bootcamp =1 -- and asig.id_asignatura=1  -- solo para 1 curso
+group by asignatura, alumno
+order by asignatura, nota_media 
+-- limit 3
+;
 

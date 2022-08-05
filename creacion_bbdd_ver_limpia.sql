@@ -17,6 +17,40 @@ CREATE DATABASE BBDD_IDBootcamps;
 -- INDICO QUE VOY A TRABAJAR SOBRE LA NUEVA BBDD 
 use BBDD_IDBootcamps;
 
+-- #################### PAIS ######################
+-- creamos la tabla de paises
+CREATE TABLE paises
+(
+    id_pais SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nombre_pais VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id_pais)
+);
+
+-- #################### CIUDADES ######################
+-- creamos la tabla de ciudades
+CREATE TABLE ciudades
+(
+    id_ciudad SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nombre_ciudad VARCHAR(50) NOT NULL,
+    id_pais SMALLINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id_ciudad),
+    FOREIGN KEY (id_pais) REFERENCES paises(id_pais)
+);
+
+-- #################### DIRECCIONES ######################
+-- creamos la tabla de direcciones
+CREATE TABLE direcciones
+(
+    id_direccion SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    calle VARCHAR(50) NOT NULL,
+    barrio VARCHAR(50) default null,
+    telefono VARCHAR(20) default null,
+    cod_postal VARCHAR(10) default null,
+    id_ciudad SMALLINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id_direccion),
+    FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad)
+);
+
 -- ############ALUMNOS##############
 -- creamos la tabla de alumnos
 CREATE TABLE alumnos
@@ -106,38 +140,4 @@ CREATE TABLE examenes
     fecha DATE NOT NULL,
     PRIMARY KEY (id_examen),
     FOREIGN KEY (id_alumno_asignatura) REFERENCES alumnos_asignaturas(id_alumno_asignatura)
-);
-
--- #################### PAIS ######################
--- creamos la tabla de paises
-CREATE TABLE paises
-(
-    id_pais SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nombre_pais VARCHAR(50) NOT NULL,
-    PRIMARY KEY (id_pais)
-);
-
--- #################### CIUDADES ######################
--- creamos la tabla de ciudades
-CREATE TABLE ciudades
-(
-    id_ciudad SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    nombre_ciudad VARCHAR(50) NOT NULL,
-    id_pais SMALLINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id_ciudad),
-    FOREIGN KEY (id_pais) REFERENCES paises(id_pais)
-);
-
--- #################### DIRECCIONES ######################
--- creamos la tabla de direcciones
-CREATE TABLE direcciones
-(
-    id_direccion SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    calle VARCHAR(50) NOT NULL,
-    barrio VARCHAR(50) default null,
-    telefono VARCHAR(20) default null,
-    cod_postal VARCHAR(10) default null,
-    id_ciudad SMALLINT UNSIGNED NOT NULL,
-    PRIMARY KEY (id_direccion),
-    FOREIGN KEY (id_ciudad) REFERENCES ciudades(id_ciudad)
 );

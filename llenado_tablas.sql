@@ -90,71 +90,66 @@ INSERT INTO bbdd_idbootcamps.direcciones
 SELECT address,city_id,postal_code,district,phone
 FROM sakila.address;
 
-
 -- SEGUNDO LLENAMOS LAS TABLAS RELACIONALES CON 2 FK
 -- ###### ALUMNOS ASIGNATURAS   ######
 INSERT INTO alumnos_asignaturas 
 (id_alumno,id_asignatura)
-VALUES
-(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),
-(2,1),(2,2),(2,3),(2,4),(2,5),(2,6),(2,7),(2,8),(2,9),(2,10),
-(3,1),(3,2),(3,3),(3,4),(3,5),(3,6),(3,7),(3,8),(3,9),(3,10),
-(4,1),(4,2),(4,3),(4,4),(4,5),(4,6),(4,7),(4,8),(4,9),(4,10),
-(5,1),(5,2),(5,3),(5,4),(5,5),(5,6),(5,7),(5,8),(5,9),(5,10),
-(6,1),(6,2),(6,3),(6,4),(6,5),(6,6),(6,7),(6,8),(6,9),(6,10)
-;
--- agrego la participacion de alumnos en los kahoots
-INSERT INTO alumnos_asignaturas 
-(id_alumno,id_asignatura)
-VALUES
-(1,20), (2,20), (3,20), (4,20), (5,20), (6,20)
-;
+select a.id_alumno, asig.id_asignatura 
+from asignaturas as asig cross join alumnos as a
+order by a.id_alumno; 
+-- Delete from alumnos_asignaturas;
 
 -- ###### PROFESORES ASIGNATURAS   ######
 INSERT INTO asignaturas_profesores 
 (id_profesor,id_asignatura)
 VALUES
-(1,1),(1,3),(1,5),(1,7),(1,9),(1,20), -- asociamos solo asignaturas impares a alfonso
+(1,1),(1,3),(1,5),(1,7),(1,9),(1,11), -- asociamos solo asignaturas impares a alfonso
 (2,2),(2,4),(2,6),(2,8),(2,10) -- asignamos solo asignaturas pares a miquel
 ;
+-- select p.id_profesor, asig.id_asignatura from profesores as p cross join asignaturas as asig order by p.id_profesor;
 -- DELETE FROM asignaturas_profesores;
+
+
 -- TERCERO LLENAMOS LAS TABLAS QUE DEPENDE DE UNA TABLA RELACIONAL CON 2 FK
+
 -- ###### EXAMENES  ######
+-- Llenado notas pre-curso
 INSERT INTO examenes 
 (id_alumno_asignatura,nombre_examen,nota,fecha) 
-VALUES
-(1,'Ex-Precurso',ROUND(RAND()*(10-3+1)+3,1),'2022-05-01'),(2,'Ex-Python',ROUND(RAND()*(10-3+1)+3,1),'2022-06-01'),(3,'Ex-Mates',ROUND(RAND()*(10-3+1)+3,1),'2022-06-07'),(4,'Ex-WebAPI',ROUND(RAND()*(10-3+1)+3,1),'2022-06-14'),(5,'Ex-SQL',ROUND(RAND()*(10-3+1)+3,1),'2022-06-21'),(6,'Ex-ML',ROUND(RAND()*(10-3+1)+3,1),'2022-07-01'),(7,'Ex-NPL',ROUND(RAND()*(10-3+1)+3,1),'2022-07-02'),(8,'Ex-SeriesT',ROUND(RAND()*(10-3+1)+3,1),'2022-07-04'),(9,'Ex-RNN',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),(10,'Ex-SistR',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),
-(11,'Ex-Precurso',ROUND(RAND()*(10-3+1)+3,1),'2022-05-01'),(12,'Ex-Python',ROUND(RAND()*(10-3+1)+3,1),'2022-06-01'),(13,'Ex-Mates',ROUND(RAND()*(10-3+1)+3,1),'2022-06-07'),(14,'Ex-WebAPI',ROUND(RAND()*(10-3+1)+3,1),'2022-06-14'),(15,'Ex-SQL',ROUND(RAND()*(10-3+1)+3,1),'2022-06-21'),(16,'Ex-ML',ROUND(RAND()*(10-3+1)+3,1),'2022-07-01'),(17,'Ex-NPL',ROUND(RAND()*(10-3+1)+3,1),'2022-07-02'),(18,'Ex-SeriesT',ROUND(RAND()*(10-3+1)+3,1),'2022-07-04'),(19,'Ex-RNN',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),(20,'Ex-SistR',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),
-(21,'Ex-Precurso',ROUND(RAND()*(10-3+1)+3,1),'2022-05-01'),(22,'Ex-Python',ROUND(RAND()*(10-3+1)+3,1),'2022-06-01'),(23,'Ex-Mates',ROUND(RAND()*(10-3+1)+3,1),'2022-06-07'),(24,'Ex-WebAPI',ROUND(RAND()*(10-3+1)+3,1),'2022-06-14'),(25,'Ex-SQL',ROUND(RAND()*(10-3+1)+3,1),'2022-06-21'),(26,'Ex-ML',ROUND(RAND()*(10-3+1)+3,1),'2022-07-01'),(27,'Ex-NPL',ROUND(RAND()*(10-3+1)+3,1),'2022-07-02'),(28,'Ex-SeriesT',ROUND(RAND()*(10-3+1)+3,1),'2022-07-04'),(29,'Ex-RNN',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),(30,'Ex-SistR',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),
-(31,'Ex-Precurso',ROUND(RAND()*(10-3+1)+3,1),'2022-05-01'),(32,'Ex-Python',ROUND(RAND()*(10-3+1)+3,1),'2022-06-01'),(33,'Ex-Mates',ROUND(RAND()*(10-3+1)+3,1),'2022-06-07'),(34,'Ex-WebAPI',ROUND(RAND()*(10-3+1)+3,1),'2022-06-14'),(35,'Ex-SQL',ROUND(RAND()*(10-3+1)+3,1),'2022-06-21'),(36,'Ex-ML',ROUND(RAND()*(10-3+1)+3,1),'2022-07-01'),(37,'Ex-NPL',ROUND(RAND()*(10-3+1)+3,1),'2022-07-02'),(38,'Ex-SeriesT',ROUND(RAND()*(10-3+1)+3,1),'2022-07-04'),(39,'Ex-RNN',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),(40,'Ex-SistR',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),
-(41,'Ex-Precurso',ROUND(RAND()*(10-3+1)+3,1),'2022-05-01'),(42,'Ex-Python',ROUND(RAND()*(10-3+1)+3,1),'2022-06-01'),(43,'Ex-Mates',ROUND(RAND()*(10-3+1)+3,1),'2022-06-07'),(44,'Ex-WebAPI',ROUND(RAND()*(10-3+1)+3,1),'2022-06-14'),(45,'Ex-SQL',ROUND(RAND()*(10-3+1)+3,1),'2022-06-21'),(46,'Ex-ML',ROUND(RAND()*(10-3+1)+3,1),'2022-07-01'),(47,'Ex-NPL',ROUND(RAND()*(10-3+1)+3,1),'2022-07-02'),(48,'Ex-SeriesT',ROUND(RAND()*(10-3+1)+3,1),'2022-07-04'),(49,'Ex-RNN',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),(50,'Ex-SistR',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),
-(51,'Ex-Precurso',ROUND(RAND()*(10-3+1)+3,1),'2022-05-01'),(52,'Ex-Python',ROUND(RAND()*(10-3+1)+3,1),'2022-06-01'),(53,'Ex-Mates',ROUND(RAND()*(10-3+1)+3,1),'2022-06-07'),(54,'Ex-WebAPI',ROUND(RAND()*(10-3+1)+3,1),'2022-06-14'),(55,'Ex-SQL',ROUND(RAND()*(10-3+1)+3,1),'2022-06-21'),(56,'Ex-ML',ROUND(RAND()*(10-3+1)+3,1),'2022-07-01'),(57,'Ex-NPL',ROUND(RAND()*(10-3+1)+3,1),'2022-07-02'),(58,'Ex-SeriesT',ROUND(RAND()*(10-3+1)+3,1),'2022-07-04'),(59,'Ex-RNN',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06'),(60,'Ex-SistR',ROUND(RAND()*(10-3+1)+3,1),'2022-07-06')
+SELECT
+	id_alumno_asignatura, 
+    CONCAT_WS('_','Examen',asig.nombre_asignatura),
+    ROUND(RAND()*(10-3+1)+2,1),
+    date(concat(2022,'-',ROUND(RAND()*(7-5)+5,0),'-',ROUND(RAND()*(29)+1,0))) 
+From alumnos_asignaturas aa 
+	left join asignaturas asig on asig.id_asignatura = aa.id_asignatura
 ;
 -- Delete from examenes;
 
 -- agregamos algunas notas rojas
 INSERT INTO examenes 
 (id_alumno_asignatura,nombre_examen,nota,fecha) 
-VALUES
-(1,'Ex-Precurso',ROUND(RAND()*(5-1+1)+1,1),'2022-05-01'),(2,'Ex-Python',ROUND(RAND()*(5-1+1)+1,1),'2022-06-01'),(3,'Ex-Mates',ROUND(RAND()*(5-1+1)+1,1),'2022-06-07'),(4,'Ex-WebAPI',ROUND(RAND()*(5-1+1)+1,1),'2022-06-14'),(5,'Ex-SQL',ROUND(RAND()*(5-1+1)+1,1),'2022-06-21'),(6,'Ex-ML',ROUND(RAND()*(5-1+1)+1,1),'2022-07-01'),(7,'Ex-NPL',ROUND(RAND()*(5-1+1)+1,1),'2022-07-02'),(8,'Ex-SeriesT',ROUND(RAND()*(5-1+1)+1,1),'2022-07-04'),(9,'Ex-RNN',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),(10,'Ex-SistR',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),
-(11,'Ex-Precurso',ROUND(RAND()*(5-1+1)+1,1),'2022-05-01'),(12,'Ex-Python',ROUND(RAND()*(5-1+1)+1,1),'2022-06-01'),(13,'Ex-Mates',ROUND(RAND()*(5-1+1)+1,1),'2022-06-07'),(14,'Ex-WebAPI',ROUND(RAND()*(5-1+1)+1,1),'2022-06-14'),(15,'Ex-SQL',ROUND(RAND()*(5-1+1)+1,1),'2022-06-21'),(16,'Ex-ML',ROUND(RAND()*(5-1+1)+1,1),'2022-07-01'),(17,'Ex-NPL',ROUND(RAND()*(5-1+1)+1,1),'2022-07-02'),(18,'Ex-SeriesT',ROUND(RAND()*(5-1+1)+1,1),'2022-07-04'),(19,'Ex-RNN',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),(20,'Ex-SistR',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),
-(21,'Ex-Precurso',ROUND(RAND()*(5-1+1)+1,1),'2022-05-01'),(22,'Ex-Python',ROUND(RAND()*(5-1+1)+1,1),'2022-06-01'),(23,'Ex-Mates',ROUND(RAND()*(5-1+1)+1,1),'2022-06-07'),(24,'Ex-WebAPI',ROUND(RAND()*(5-1+1)+1,1),'2022-06-14'),(25,'Ex-SQL',ROUND(RAND()*(5-1+1)+1,1),'2022-06-21'),(26,'Ex-ML',ROUND(RAND()*(5-1+1)+1,1),'2022-07-01'),(27,'Ex-NPL',ROUND(RAND()*(5-1+1)+1,1),'2022-07-02'),(28,'Ex-SeriesT',ROUND(RAND()*(5-1+1)+1,1),'2022-07-04'),(29,'Ex-RNN',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),(30,'Ex-SistR',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),
-(31,'Ex-Precurso',ROUND(RAND()*(5-1+1)+1,1),'2022-05-01'),(32,'Ex-Python',ROUND(RAND()*(5-1+1)+1,1),'2022-06-01'),(33,'Ex-Mates',ROUND(RAND()*(5-1+1)+1,1),'2022-06-07'),(34,'Ex-WebAPI',ROUND(RAND()*(5-1+1)+1,1),'2022-06-14'),(35,'Ex-SQL',ROUND(RAND()*(5-1+1)+1,1),'2022-06-21'),(36,'Ex-ML',ROUND(RAND()*(5-1+1)+1,1),'2022-07-01'),(37,'Ex-NPL',ROUND(RAND()*(5-1+1)+1,1),'2022-07-02'),(38,'Ex-SeriesT',ROUND(RAND()*(5-1+1)+1,1),'2022-07-04'),(39,'Ex-RNN',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),(40,'Ex-SistR',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),
-(41,'Ex-Precurso',ROUND(RAND()*(5-1+1)+1,1),'2022-05-01'),(42,'Ex-Python',ROUND(RAND()*(5-1+1)+1,1),'2022-06-01'),(43,'Ex-Mates',ROUND(RAND()*(5-1+1)+1,1),'2022-06-07'),(44,'Ex-WebAPI',ROUND(RAND()*(5-1+1)+1,1),'2022-06-14'),(45,'Ex-SQL',ROUND(RAND()*(5-1+1)+1,1),'2022-06-21'),(46,'Ex-ML',ROUND(RAND()*(5-1+1)+1,1),'2022-07-01'),(47,'Ex-NPL',ROUND(RAND()*(5-1+1)+1,1),'2022-07-02'),(48,'Ex-SeriesT',ROUND(RAND()*(5-1+1)+1,1),'2022-07-04'),(49,'Ex-RNN',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),(50,'Ex-SistR',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),
-(51,'Ex-Precurso',ROUND(RAND()*(5-1+1)+1,1),'2022-05-01'),(52,'Ex-Python',ROUND(RAND()*(5-1+1)+1,1),'2022-06-01'),(53,'Ex-Mates',ROUND(RAND()*(5-1+1)+1,1),'2022-06-07'),(54,'Ex-WebAPI',ROUND(RAND()*(5-1+1)+1,1),'2022-06-14'),(55,'Ex-SQL',ROUND(RAND()*(5-1+1)+1,1),'2022-06-21'),(56,'Ex-ML',ROUND(RAND()*(5-1+1)+1,1),'2022-07-01'),(57,'Ex-NPL',ROUND(RAND()*(5-1+1)+1,1),'2022-07-02'),(58,'Ex-SeriesT',ROUND(RAND()*(5-1+1)+1,1),'2022-07-04'),(59,'Ex-RNN',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06'),(60,'Ex-SistR',ROUND(RAND()*(5-1+1)+1,1),'2022-07-06')
+SELECT
+	id_alumno_asignatura, 
+    CONCAT_WS('_','Examen',asig.nombre_asignatura),
+    ROUND(RAND()*(5-1+1)+1,1),
+    date(concat(2022,'-',ROUND(RAND()*(7-5)+5,0),'-',ROUND(RAND()*(29)+1,0))) -- '2022-05-01'
+From alumnos_asignaturas aa 
+	left join asignaturas asig on asig.id_asignatura = aa.id_asignatura
 ;
 
--- agregamos ranking kahoot
+-- agregamos algunas notas medias
 INSERT INTO examenes 
 (id_alumno_asignatura,nombre_examen,nota,fecha) 
-VALUES
-(61,'Kahoot1',ROUND(RAND()*(6-1+1)+1,1),'2022-05-01'), 
-(62,'Kahoot1',ROUND(RAND()*(6-1+1)+1,1),'2022-05-01'), 
-(63,'Kahoot1',ROUND(RAND()*(6-1+1)+1,1),'2022-05-01'),
-(64,'Kahoot1',ROUND(RAND()*(6-1+1)+1,1),'2022-05-01'),
-(65,'Kahoot1',ROUND(RAND()*(6-1+1)+1,1),'2022-05-01'),
-(66,'Kahoot1',ROUND(RAND()*(6-1+1)+1,1),'2022-05-01')
+SELECT
+	id_alumno_asignatura, 
+    CONCAT_WS('_','Examen',asig.nombre_asignatura),
+    ROUND(RAND()*(10-5)+4,1),
+    date(concat(2022,'-',ROUND(RAND()*(7-5)+5,0),'-',ROUND(RAND()*(30),0))) 
+From alumnos_asignaturas aa 
+	left join asignaturas asig on asig.id_asignatura = aa.id_asignatura
 ;
+
 
 -- Cuarto actualizo tabla alumnos con direcciones
 UPDATE alumnos SET id_direccion = ROUND(RAND()*603);
