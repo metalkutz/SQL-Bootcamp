@@ -39,10 +39,15 @@ select *
 from alumnos al
 	left join alumnos_asignaturas aa on al.id_alumno = aa.id_alumno
 		left join examenes e on e.id_alumno_asignatura = aa.id_alumno_asignatura
-where al.estado = 1 -- solo alumnos activos
+			left join (select al.id_alumno, round(avg(e.nota),1) as nota_media 
+						from alumnos al	left join alumnos_asignaturas aa on al.id_alumno = aa.id_alumno left join examenes e on e.id_alumno_asignatura = aa.id_alumno_asignatura
+						where al.estado = 1 -- solo alumnos activos 
+                        group by al.id_alumno
+                        order by nota_media desc
+                        limit 1) temp on temp.id_alumno = al.id_alumno
 ; 
 
-select -- *
+select -- nota medias alumnos
 	al.nombre_alumno as alumno, 
     round(avg(e.nota),1) as nota_media
 from alumnos al
@@ -50,7 +55,8 @@ from alumnos al
 		left join examenes e on e.id_alumno_asignatura = aa.id_alumno_asignatura
 where al.estado = 1 -- solo alumnos activos
 group by al.id_alumno
-order by nota_media
+order by nota_media desc
+limit 1
 ; 
 
 -- ¿Cuál es la asignatura más dificil?
@@ -63,7 +69,7 @@ from asignaturas asig
 where asig.id_bootcamp =1  -- solo para edición del bootcamp data science may-2022
 group by asig.nombre_asignatura
 order by nota_media 
-limit 3
+limit 1
 ;
 
 -- Busca el grupo de riesgo de cada asignatura (alumnos que peor van) y verifica si hay alguno que esté en todas.
@@ -75,22 +81,9 @@ from asignaturas asig
 	left join alumnos_asignaturas aa on asig.id_asignatura = aa.id_asignatura -- unimos asignaturas con su relación con alumnos
 		inner join alumnos al on al.id_alumno = aa.id_alumno -- unimos con los datos de alumnos
 			left join examenes e on e.id_alumno_asignatura = aa.id_alumno_asignatura -- unimos los examenes rendidos por alumnos en sus asignaturas
-where asig.id_bootcamp =1 and asig.id_asignatura=1  -- solo para 1 curso
-group by asignatura, alumno
-order by asignatura, nota_media 
--- limit 3
-;
-
-select 
-	asig.nombre_asignatura as asignatura,
-    al.nombre_alumno as alumno,
-    round(avg(e.nota),1) as nota_media
-from asignaturas asig 
-	left join alumnos_asignaturas aa on asig.id_asignatura = aa.id_asignatura -- unimos asignaturas con su relación con alumnos
-		inner join alumnos al on al.id_alumno = aa.id_alumno -- unimos con los datos de alumnos
-			left join examenes e on e.id_alumno_asignatura = aa.id_alumno_asignatura -- unimos los examenes rendidos por alumnos en sus asignaturas
 where asig.id_bootcamp =1 -- and asig.id_asignatura=1  -- solo para 1 curso
 group by asignatura, alumno
+having nota_media < 5.0
 order by asignatura, nota_media 
 -- limit 3
 ;
